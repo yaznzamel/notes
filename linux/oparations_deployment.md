@@ -2,11 +2,7 @@
 # Operations deployment
 
 
-
-
-
-
-### Create and manage virtual machine 
+## Create and manage virtual machine 
 
 
 #### Managing vms using virsh
@@ -55,6 +51,8 @@ virsh undefine NAME
 virsh undefine NAME --remove-all-storage
 
 
+# Autostart a vm when host restarts
+virsh autostart NAME
 
 
 ```
@@ -96,5 +94,27 @@ virt-install --osinfo ubuntu24.04 --name ubuntu1 --memory 1024 --vcpu 1 --import
 virsh list --all
 
 
+```
+
+```
+virt-install \
+  --osinfo ubuntu24.04 \
+  --name ubuntu1 \
+  --memory 1024 \
+  --vcpus 1 \
+  --import \
+  --disk ubuntu-22.04-minimal-cloudimg-amd64.img \
+  --graphics none \
+  --cloud-init user-data=user-data.yaml
+
+```
+
+
+## Manage services and processes
+
+### Manage services
+
+```
+# list services by 
 ```
 
