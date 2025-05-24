@@ -1,5 +1,3 @@
-c
-
 ### This section for the most common storage commands that every devops engineer must understand and memorize since it provides an entrance to devices adminstration.
 
 
@@ -90,8 +88,14 @@ cat /etc/exports
 # Export one of your directories
 /home 10.0.0.0/24(ro,sync,no_subtree_check)
 
+# re-export the nfs
+exportfs -r
 # Mount nfs locally/remotely
 mount 127.0.0.1:/home /mnt
+
+# Configure automatice mount point 
+127.0.0.1:/home /mnt nfs defaults 0 0
+
 
     
 
@@ -101,6 +105,8 @@ mount 127.0.0.1:/home /mnt
 ## LVM
 
 ```
+# install lvm
+    apt install lvm2 -y
 # List lvm data
 sudo lvmdiskscan
 
@@ -118,6 +124,23 @@ sudo vgcreate vg_llms /dev/sda /dev/sdb
 
 # Extend a volume
 sudo vgextend vg_llms /dev/sdc
+
+# remove a pv from a vg
+   vgreduce voluem1 /dev/vdc
+
+
+# create a logical volume out of volume group
+    lvcreate --size 0.5G --name smalladata <VG_NAME>
+
+# remove a logical volume 
+    lvremove <VG_NAME> <LV_NAME>
+
+# reduce a size of a logical volume 
+    lvreSIZE --size 752M volume1/smalldata
+
+# create a filesystem on a logical volume
+    mkfs.xfs /dev/volume1/smalldata
+
 
 
 ```

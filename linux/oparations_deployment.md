@@ -118,3 +118,64 @@ virt-install \
 # list services by 
 ```
 
+
+
+
+## Manage and compile packages
+
+
+### Manage packages
+
+  APT vs DPKG
+* dpkg is the low-level Debian package manager. It installs .deb files directly but doesn’t resolve dependencies.
+
+* apt is a higher-level tool that uses dpkg under the hood and handles dependency resolution, downloads, and repo management.
+```
+# list current installed packages
+apt list
+
+# search for the package of certain installed binary
+  dpkg --search /bin/ls
+
+# List the binaries which belong to certain package
+  dpkg --listfiles coreutils | greop "^/bin"
+
+# update local repo with remote one 
+apt update
+
+# update currnet packages 
+apt upgrade
+
+# check package contents
+apt show <package-name>
+
+# remove package
+apt remove package
+
+# remove a package with it's dependencies
+apt autoremove nginx
+
+
+# check the repository we use for installing packages
+ls /etc/apt/sources.list.d/
+
+```
+
+### Compile softwares
+
+Softwares have different dependencies and ways to configure them , however we compile and configure using MAKE utility
+
+```
+# Always make sure to inspect the README file before running make commands
+
+
+# Generate the configuration script
+  ./autogen
+# Compile with default configuration
+  ./configure && make
+
+# Move the compiled code to be global path
+  make install
+
+```
+
