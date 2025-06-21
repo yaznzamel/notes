@@ -216,6 +216,14 @@ ps u 1 > /home/bob/resources.txt
 
 ### Manage packages
 
+
+Topics to master : 
+
+* list current packages
+* identify certain executable to which utility it refers to
+* remove a package with it's dependency
+* Configure old distribution installation
+
   APT vs DPKG
 * dpkg is the low-level Debian package manager. It installs .deb files directly but doesn’t resolve dependencies.
 
@@ -245,6 +253,13 @@ apt remove package
 # remove a package with it's dependencies
 apt autoremove nginx
 
+# let the package manager pull packages from older distros
+1. cd /etc/apt
+2. vim sources.list
+3. add the archive url "deb http://us.archive.ubuntu.com/ubuntu/ focal main"
+4. sudo apt update
+
+
 
 # check the repository we use for installing packages
 ls /etc/apt/sources.list.d/
@@ -262,10 +277,12 @@ Softwares have different dependencies and ways to configure them , however we co
 # Generate the configuration script
   ./autogen
 # Compile with default configuration
-  ./configure && make
+  sudo ./configure && sudo make
 
 # Move the compiled code to be global path
   make install
+
+# use the util by the folder name you were inside
 
 ```
 

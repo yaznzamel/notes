@@ -43,8 +43,14 @@ lsblk -f / df -h
 # create a file system
 mkfs.ext4 /dev/sda
 
+# create a filesystem with inode size
+mkfs.ext4 -N 2048 /dev/vdb
+
 # create file system with a label
 mkfs.ext4 -L "llm-fs" /dev/sdb
+
+# delete a filesystem
+wipefs --all /dev/vdc
 
 # mount file system
 mount /dev/sdb2 /mnt/llm-models
